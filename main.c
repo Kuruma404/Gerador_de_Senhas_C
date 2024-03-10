@@ -70,9 +70,7 @@ int main(){
     //adicionando o terminador null no final da string pra indicar o fim dela
     senha[comp] = '\0';
 
-
     printf("Sua senha: %s\n", senha);
-
 
     free(senha);
 

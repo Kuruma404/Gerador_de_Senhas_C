@@ -51,7 +51,6 @@ int main(){
         char *senha = malloc(comp + 1);  
 
     
-
         //montando a senha
         for(int i = 0; i < comp; i++){
 
@@ -76,15 +75,12 @@ int main(){
         printf("Sua senha: %s\n\n", senha);
 
         
-
         printf("Refazer senha? [Y/N]: ");
         scanf("%s", &continuar);
 
         free(senha);
 
     }while(continuar == 'Y' || continuar == 'y');
-
-    
 
     return 0;
 }

@@ -29,52 +29,62 @@ int main(){
 
     printf("----  GERADOR DE SENHAS  ----\n\n");
 
+
+    // Loop para refazer a função caso " continuar = 'Y' "
     do{
-        printf("Qual o comprimento da senha? \nSua resposta: ");
-        scanf("%d", &comp);
+        do{
+            
+            printf("Qual o comprimento da senha? \nSua resposta: ");
+            scanf("%d", &comp);
+            
+            //retorna o resultado de falha do programa
+            if (comp < 5)
+            { printf("\nERRO: A senha precisa ter o comprimento maior que 4!\n\n"); }
+
+        } while (comp < 5);
+            
         
-        //retorna o resultado de falha do programa
-        if (comp < 5)
-        {printf("\nERRO: A senha precisa ter o comprimento maior que 4!\n\n");}
-    } while (comp < 5);
+        printf("\n-----------------------------\n");
+
         
+        //aloca espaço para a senha
+        char *senha = malloc(comp + 1);  
+
     
-    printf("\n-----------------------------\n");
 
+        //montando a senha
+        for(int i = 0; i < comp; i++){
 
-    //aloca espaço para a senha
-    char *senha = malloc(comp + 1);  
+            int charTipo = rand() % 4;
 
+                switch(charTipo){
+                case 0:
+                    senha[i] = digitos[rand() % digitosComp];
+                    break;
+                case 1:
+                    senha[i] = lowers[rand() % lowersComp];
+                    break;
+                case 2:
+                    senha[i] = uppers[rand() % uppersComp];
+                    break;
+                default:
+                    senha[i] = simbolos[rand() % simbolosComp];
+                }
+        }
 
-    //montando a senha
-    for(int i = 0; i < comp; i++){
+        senha[comp] = '\0';
+        printf("Sua senha: %s\n\n", senha);
 
-        int charTipo = rand() % 4;
+        
 
-            switch(charTipo){
-            case 0:
-                senha[i] = digitos[rand() % digitosComp];
-                break;
-            case 1:
-                senha[i] = lowers[rand() % lowersComp];
-                break;
-            case 2:
-                senha[i] = uppers[rand() % uppersComp];
-                break;
-            default:
-                senha[i] = simbolos[rand() % simbolosComp];
-            }
-    }
+        printf("Refazer senha? [Y/N]: ");
+        scanf("%s", &continuar);
 
+        free(senha);
 
-    //adicionando o terminador null no final da string pra indicar o fim dela
-    senha[comp] = '\0';
+    }while(continuar == 'Y' || continuar == 'y');
 
-
-    printf("Sua senha: %s\n", senha);
-
-
-    free(senha);
+    
 
     return 0;
 }
